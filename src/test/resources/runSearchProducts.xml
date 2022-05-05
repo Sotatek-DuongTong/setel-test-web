@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Setel-test-web" parallel="false">
+	<test name="Run on Chrome">
+		<classes>
+			<class name="searchProduct.SearchProducts" />
+		</classes>
+	</test>
+</suite>
