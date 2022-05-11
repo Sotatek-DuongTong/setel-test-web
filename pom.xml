@@ -12,7 +12,7 @@
 		<!-- Encoding for Report -->
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<!-- Compiler Code with Java 8 -->
+		<!-- Compiler Code with Java 11 -->
 		<maven.compiler.target>11.0.8</maven.compiler.target>
 		<maven.compiler.source>11.0.8</maven.compiler.source>
 
