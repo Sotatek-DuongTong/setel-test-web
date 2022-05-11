@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 
 public class BaseTest {
@@ -16,7 +18,7 @@ public class BaseTest {
 	public SoftAssert soft;
 	
 	protected WebDriver getBrowserDriver() {
-		System.setProperty("webdriver.chrome.driver", GlobalConstants.PROJECT_PATH + "\\browserDrivers\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().window().maximize();	
