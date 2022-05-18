@@ -10,15 +10,15 @@ import commons.BasePage;
 import commons.Product;
 import searchProductsInterfaces.dashboardWeb2PageUIs;
 
-public class DashboardWeb2PageObjects extends BasePage{
+public class DashboardWeb2PageObjects extends BasePage {
 	WebDriver driver;
 	String nameOfWeb2;
-	
-	public DashboardWeb2PageObjects (WebDriver driver) {
+
+	public DashboardWeb2PageObjects(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public String getNameWeb2 (WebDriver driver) {
+	public String getNameWeb2(WebDriver driver) {
 		nameOfWeb2 = getPageTitle(driver);
 		return nameOfWeb2;
 	}
@@ -28,27 +28,28 @@ public class DashboardWeb2PageObjects extends BasePage{
 		sendkeyToElement(driver, dashboardWeb2PageUIs.SEARCH_BOX, searchProduct);
 		clickToElement(driver, dashboardWeb2PageUIs.SEARCH_BUTTON);
 	}
-	
-	public boolean isNextButtonDisplayed () {
+
+	public boolean isNextButtonDisplayed() {
 		return isElementDisplayed(driver, dashboardWeb2PageUIs.NEXT_BUTTON);
 	}
 
 	public List<Product> getProductsInfoEachPage(WebDriver driver, String webName) {
-		List <Product> allProductsEachPage = new ArrayList<Product>();
+		List<Product> allProductsEachPage = new ArrayList<Product>();
 		waitForAllElementVisible(driver, dashboardWeb2PageUIs.PRODUCT_BOX);
-		
-		List <WebElement> allProductElements = getElements(driver, dashboardWeb2PageUIs.PRODUCT_BOX);
-		for (WebElement item: allProductElements) {
+
+		List<WebElement> allProductElements = getElements(driver, dashboardWeb2PageUIs.PRODUCT_BOX);
+		for (WebElement item : allProductElements) {
 			String prdName = getChildElement(driver, item, dashboardWeb2PageUIs.PRODUCT_NAME).getText();
-			Float productPrice = Float.parseFloat(getChildElement(driver, item, dashboardWeb2PageUIs.PRODUCT_PRICE).getText().replace("£","").replace(",",""));
+			Float productPrice = Float.parseFloat(getChildElement(driver, item, dashboardWeb2PageUIs.PRODUCT_PRICE)
+					.getText().replace("£", "").replace(",", ""));
 			String productLink = getChildElement(driver, item, dashboardWeb2PageUIs.PRODUCT_LINK).getAttribute("href");
-			allProductsEachPage.add(new Product (webName, prdName, productPrice, productLink));
+			allProductsEachPage.add(new Product(webName, prdName, productPrice, productLink));
 		}
 		return allProductsEachPage;
 	}
 
 	public List<Product> getAllProducts(WebDriver driver, String webName) {
-		List <Product> allProducts = new ArrayList<Product>();
+		List<Product> allProducts = new ArrayList<Product>();
 		waitForAllElementVisible(driver, dashboardWeb2PageUIs.PRODUCT_BOX);
 		allProducts = getProductsInfoEachPage(driver, webName);
 		while (isNextButtonDisplayed()) {
@@ -57,9 +58,7 @@ public class DashboardWeb2PageObjects extends BasePage{
 			newAllProduct = getProductsInfoEachPage(driver, webName);
 			allProducts.addAll(newAllProduct);
 		}
-		
 
-		
 		return allProducts;
 	}
 

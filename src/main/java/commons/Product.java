@@ -22,6 +22,7 @@ public class Product {
 	}
 
 	public String toString() {
-		return  "[Product Price = " + productPrice + ", Website Name = " + webName + ", Product Name = " + prdName + ", Product Url = " + productUrl + "]";
+		return "[Product Price = " + productPrice + ", Website Name = " + webName + ", Product Name = " + prdName
+				+ ", Product Url = " + productUrl + "]";
 	}
 }
